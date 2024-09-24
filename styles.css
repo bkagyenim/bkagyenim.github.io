@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(939px at 94.7% 50%, rgb(0, 178, 169) 0%, rgb(0, 106, 101) 76.9%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-section {
+    margin-right: 20px;
+    width: 40%; /* Revert to original percentage */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-bottom: 20px;
+}
+
+.profile-section h1 {
+    font-size: 2.5rem;
+    margin: 15px 0;
+}
+
+.profile-section p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.links-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%; /* Revert to 60% for larger screens */
+}
+
+.button {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 25px;
+    margin: 10px 0;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.button i {
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Footer styles */
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .profile-section, 
+    .links-section {
+        width: 100%; /* Full width on smaller screens */
+        height: auto; /* Allow flexible height */
+        margin-right: 0;
+    }
+
+    .profile-pic {
+        width: 25vw; /* Responsive sizing for smaller screens */
+        height: 25vw;
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+    .profile-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .links-section {
+        width: 100%;
+    }
+}
+
+/* Larger screens: revert to original layout */
+@media (min-width: 769px) {
+    .profile-section {
+        width: 40%; /* Original width for larger screens */
+    }
+
+    .links-section {
+        width: 60%; /* Original width for larger screens */
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+}
