@@ -13,16 +13,17 @@ body {
 }
 
 .container {
-    display: flex;
-    flex: 1;
+    display: grid;
+    grid-template-columns: 40% 60%; /* Two columns with 40% for profile-section and 60% for links-section */
     justify-content: center;
     align-items: center;
+    place-items: center; /* Center content horizontally and vertically in each grid cell */
     padding: 20px;
+    flex: 1;
 }
 
+
 .profile-section {
-    margin-right: 20px;
-    width: 40%; /* Revert to original percentage */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -53,7 +54,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%; /* Revert to 60% for larger screens */
 }
 
 .button {
@@ -105,19 +105,19 @@ body {
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Stack sections on smaller screens */
         padding: 10px;
     }
 
     .profile-section, 
     .links-section {
-        width: 100%; /* Full width on smaller screens */
-        height: auto; /* Allow flexible height */
+        width: 100%;
+        height: auto;
         margin-right: 0;
     }
 
     .profile-pic {
-        width: 25vw; /* Responsive sizing for smaller screens */
+        width: 25vw;
         height: 25vw;
         max-width: 120px;
         max-height: 120px;
@@ -134,12 +134,16 @@ body {
 
 /* Larger screens: revert to original layout */
 @media (min-width: 769px) {
+    .container {
+        grid-template-columns: 40% 60%;
+    }
+
     .profile-section {
-        width: 40%; /* Original width for larger screens */
+        width: 40%;
     }
 
     .links-section {
-        width: 60%; /* Original width for larger screens */
+        width: 60%;
     }
 
     .profile-pic {
@@ -147,6 +151,7 @@ body {
         height: 150px;
     }
 }
+
 /* Style for the form */
 .contact-form {
     background-color: #fff;
