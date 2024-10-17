@@ -218,3 +218,116 @@ body {
         font-size: 14px;
     }
 }
+.fab-button {
+    position: fixed; /* Sticks the button in a fixed position */
+    bottom: 20px; /* Adjust to how far from the bottom you want the button */
+    right: 20px; /* Adjust to how far from the right you want the button */
+    background-color: #00AAA2; /* Button color */
+    color: white;
+    border-radius: 50%; /* Makes the button round */
+    width: 60px; /* Size of the button */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow for depth */
+    font-size: 24px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.fab-button:hover {
+    background-color: #008B83; /* Darken on hover */
+}
+/* Hide the form initially */
+.hidden {
+    display: none;
+}
+
+/* Style for the floating action button */
+.fab-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff4081;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.fab-button i {
+    font-size: 20px;
+}
+
+/* Style for the form that pops up */
+#link-form-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+#link-form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+#link-form-container label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#link-form-container input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#link-form-container button {
+    background-color: #008B83;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#link-form-container button:hover {
+    background-color: #00AAA2;
+}
+
+/* Style for the dynamic links */
+.links-section .button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.links-section .button a {
+    text-decoration: none;
+    color: #333;
+}
+
+.links-section .button .close-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #ff4081;
+    cursor: pointer;
+}
+
+.links-section .button .close-btn:hover {
+    color: red;
+}
+

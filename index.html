@@ -14,13 +14,22 @@
             <h3 style="color: white;">KWADWO  BOATENG</h3>
             <p style="color: white;">Application Support Dev. </p>
         </div>
-        <div class="links-section">
-            <a href="#" class="button"><i class="fas fa-user"></i> About Me</a>
-            <a href="#" class="button"><i class="fas fa-layer-group"></i> Portfolio</a>
-            <a href="contact.html" class="button"><i class="fas fa-envelope"></i> Contact Me</a>
-            <a href="#" class="button"><i class="fas fa-download"></i> Download Resume</a>
-            <a href="#" class="button"><i class="fas fa-calendar"></i> Book Me</a>
+        <div class="links-section" id="links-section">
+            <!-- Dynamically created links will go here -->
         </div>
+    </div>
+
+    <!-- The form that will appear when "+" is clicked -->
+    <div id="link-form-container" class="hidden">
+        <form id="link-form">
+            <label for="title">Link Title</label>
+            <input type="text" id="link-title" name="title" placeholder="Enter title" required>
+
+            <label for="url">Link URL</label>
+            <input type="url" id="link-url" name="url" placeholder="Enter URL" required>
+
+            <button type="button" id="create-link-btn">Create Link</button>
+        </form>
     </div>
 
     <div class="footer">
@@ -28,5 +37,97 @@
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
+    <a href="#" class="fab-button" id="fab-btn"><i class="fas fa-plus"></i></a>
+
+    <script>
+        // Get elements
+        const fabButton = document.getElementById('fab-btn');
+        const linkFormContainer = document.getElementById('link-form-container');
+        const createLinkButton = document.getElementById('create-link-btn');
+        const linksSection = document.getElementById('links-section');
+
+        // Show the form when the "+" button is clicked
+        fabButton.addEventListener('click', function() {
+            linkFormContainer.classList.toggle('hidden'); // Toggle visibility of form
+        });
+
+        // Load saved links from localStorage when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            loadSavedLinks();
+        });
+
+        // Add event listener to create the link when form is submitted
+        createLinkButton.addEventListener('click', function() {
+            // Get form input values
+            const linkTitle = document.getElementById('link-title').value;
+            const linkUrl = document.getElementById('link-url').value;
+
+            if (linkTitle && linkUrl) {
+                // Create a new link element
+                const newLinkDiv = document.createElement('div');
+                newLinkDiv.classList.add('button');
+
+                newLinkDiv.innerHTML = `
+                    <a href="${linkUrl}" target="_blank">${linkTitle}</a>
+                    <button class="close-btn">x</button>
+                `;
+
+                // Add remove functionality to the new link's "close" button
+                newLinkDiv.querySelector('.close-btn').addEventListener('click', function() {
+                    linksSection.removeChild(newLinkDiv);
+                    removeLinkFromLocalStorage(linkTitle);
+                });
+
+                // Append the new link to the links section
+                linksSection.appendChild(newLinkDiv);
+
+                // Save the new link to localStorage
+                saveLinkToLocalStorage(linkTitle, linkUrl);
+
+                // Clear the form fields and hide the form
+                document.getElementById('link-title').value = '';
+                document.getElementById('link-url').value = '';
+                linkFormContainer.classList.add('hidden');
+            } else {
+                alert("Please fill in both the title and URL.");
+            }
+        });
+
+        // Function to save a link to localStorage
+        function saveLinkToLocalStorage(title, url) {
+            let savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+            savedLinks.push({ title: title, url: url });
+            localStorage.setItem('savedLinks', JSON.stringify(savedLinks));
+        }
+
+        // Function to load saved links from localStorage and display them
+        function loadSavedLinks() {
+            let savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+            savedLinks.forEach(link => {
+                const newLinkDiv = document.createElement('div');
+                newLinkDiv.classList.add('button');
+
+                newLinkDiv.innerHTML = `
+                    <a href="${link.url}" target="_blank">${link.title}</a>
+                    <button class="close-btn">x</button>
+                `;
+
+                // Add remove functionality to each link's "close" button
+                newLinkDiv.querySelector('.close-btn').addEventListener('click', function() {
+                    linksSection.removeChild(newLinkDiv);
+                    removeLinkFromLocalStorage(link.title);
+                });
+
+                linksSection.appendChild(newLinkDiv);
+            });
+        }
+
+        // Function to remove a link from localStorage
+        function removeLinkFromLocalStorage(title) {
+            let savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+            savedLinks = savedLinks.filter(link => link.title !== title);
+            localStorage.setItem('savedLinks', JSON.stringify(savedLinks));
+        }
+    </script>
 </body>
 </html>
